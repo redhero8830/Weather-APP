@@ -1,38 +1,19 @@
-.App {
-  text-align: center;
-}
+/* 리액트 부트스트랩은 따로 있다 -> 리액트는 다 컴포넌트식이므로 */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: url("https://img.freepik.com/free-vector/sky-background-video-conferencing_23-2148639325.jpg?w=900&t=st=1711207157~exp=1711207757~hmac=03fbef91a9b018164fd9df99538c0add6bb163ec25ad24a429339357a54cb9f0");
+  height: 100vh;
+  background-size: cover;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weather-box {
+  background-color: white;
+  border: 10px solid green;
+  padding: 50px;
 }
