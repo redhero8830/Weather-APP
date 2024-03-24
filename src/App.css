@@ -19,6 +19,11 @@ body {
   padding-bottom: 30px;
   border-bottom: 3px solid white;
 }
+.p{
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
 .container {
   display: flex;
   justify-content: center;

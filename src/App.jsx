@@ -69,6 +69,7 @@ export default function App() {
   return (
     <div>
       <h1 className="title">☀️ WEATHER ARE YOU? 🌧️</h1>
+      <p className="p">"Current Location" 클릭 시, 반응이 없다면 조금 기다려주세요..! 🙏 (해결 중)</p>
       {loading ? (
         <div className="container">
           <ClipLoader
