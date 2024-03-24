@@ -3,8 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Weather from "./components/Weather";
 import WeatherButton from "./components/WeatherButton";
-// const API_KEY = process.env.REACT_WEATHER_APP_API_KEY;
-const API_KEY ="efe4d7a2f0e343f771fa802e8f58c432"
+const API_KEY = "efe4d7a2f0e343f771fa802e8f58c432";
 
 export default function App() {
   const [weather, setWeather] = useState(null);
@@ -28,6 +27,7 @@ export default function App() {
 
   useEffect(() => {
     getCurrentLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // []이면 componentDidMount()처럼 작동 -> 렌더하고 바로 실행
 
   return (
