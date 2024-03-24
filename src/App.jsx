@@ -1,41 +1,94 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ClipLoader from "react-spinners/ClipLoader";
 import Weather from "./components/Weather";
 import WeatherButton from "./components/WeatherButton";
 const API_KEY = "efe4d7a2f0e343f771fa802e8f58c432";
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "white",
+};
+
+const cities = ["Seoul", "Tokyo", "New York", "London", "Barcelona", "Paris"];
+
 export default function App() {
   const [weather, setWeather] = useState(null);
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-      getWeatherByCurrentLocation(latitude, longitude);
-    });
-  };
+  const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = new URL(
+    const url = new URL(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     );
-    let response = await fetch(url);
-    let data = await response.json();
-    // console.log(data);
+    setLoading(true);
+    const response = await fetch(url);
+    const data = await response.json();
     setWeather(data);
+    setLoading(false);
+  };
+
+  const handleCityChange = (city) => {
+    if (city === "current") {
+      setCity(""); //setCity(null)이 아님
+    } else {
+      setCity(city);
+    }
   };
 
   useEffect(() => {
-    getCurrentLocation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // []이면 componentDidMount()처럼 작동 -> 렌더하고 바로 실행
+    const getCurrentLocation = () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        getWeatherByCurrentLocation(latitude, longitude);
+      });
+    };
+    const getWeatherByCity = async () => {
+      const url = new URL(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric` //city는 state
+      );
+      setLoading(true);
+      const response = await fetch(url);
+      const data = await response.json();
+      setWeather(data);
+      setLoading(false);
+    };
+
+    if (city === "") {
+      getCurrentLocation();
+    } else {
+      getWeatherByCity();
+    }
+  }, [city]);
+  // []이면 componentDidMount()처럼 작동 -> 렌더하고 바로 실행
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   return (
     <div>
-      <div className="container">
-        <Weather weather={weather} />
-        <WeatherButton />
-      </div>
+      <h1 className="title">☀️ WEATHER ARE YOU? 🌧️</h1>
+      {loading ? (
+        <div className="container">
+          <ClipLoader
+            loading={loading}
+            cssOverride={override}
+            size={368}
+          />
+        </div>
+      ) : (
+        <div className="container">
+          <WeatherButton
+            cities={cities}
+            setCity={setCity}
+            city={city}
+            handleCityChange={handleCityChange}
+          />
+          <div id="earth"></div>
+          <Weather weather={weather} />
+        </div>
+      )}
     </div>
   );
 }

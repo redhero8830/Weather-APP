@@ -1,14 +1,30 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 
-export default function WeatherButton() {
+export default function WeatherButton({
+  cities,
+  setCity,
+  city,
+  handleCityChange,
+}) {
   return (
-    <div>
-      <Button variant="warning">Current Location</Button>{" "}
-      <Button variant="warning">Seoul</Button>{" "}
-      <Button variant="warning">New York</Button>{" "}
-      <Button variant="warning">London</Button>{" "}
-      <Button variant="warning">Barcelona</Button>{" "}
+    <div className="menu-container">
+      <button
+        className={`buttons ${city === "" ? "focus-btn" : "normal-btn"}`}
+        onClick={() => handleCityChange("current")}
+      >
+        Current Location
+      </button>
+      {cities.map((item, index) => (
+        <button
+          key={index}
+          className={`buttons ${city === item ? "focus-btn" : "normal-btn"}`}
+          onClick={() => setCity(item)}
+        >
+          {item}
+        </button>
+      ))}
+      ;
     </div>
   );
 }

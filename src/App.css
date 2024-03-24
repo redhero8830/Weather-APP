@@ -1,19 +1,129 @@
 /* 리액트 부트스트랩은 따로 있다 -> 리액트는 다 컴포넌트식이므로 */
 
 body {
-  background: url("https://img.freepik.com/free-vector/sky-background-video-conferencing_23-2148639325.jpg?w=900&t=st=1711207157~exp=1711207757~hmac=03fbef91a9b018164fd9df99538c0add6bb163ec25ad24a429339357a54cb9f0");
+  background-color: #111 !important;
+  width: 100vw;
   height: 100vh;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  border: 7px solid white;
+  border-radius: 30px;
+}
+.title {
+  font-size: 4rem;
+  color: white;
+  text-align: center;
+  padding-bottom: 30px;
+  border-bottom: 3px solid white;
 }
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 80px;
 }
 .weather-box {
+  width: 400px;
+  height: 220px;
+  background-color: #111;
+  border: 3px solid white;
+  border-radius: 30px;
+  padding: 20px 30px;
+  color: white;
+}
+.weather-box h2 {
+  padding-bottom: 20px;
+  border-bottom: 3px solid white;
+}
+.weather-box h3 {
+  margin: 20px 0;
+  color: rgb(255, 255, 0, 0.7);
+}
+.menu-container {
+  border: 5px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.normal-btn {
   background-color: white;
-  border: 10px solid green;
-  padding: 50px;
+}
+.focus-btn {
+  background-color: #111;
+  color: white;
+}
+.buttons {
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+#earth {
+  background-image: url("https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTQqoB4xBnIkmUg5pxDyYW2h0Q1pRTsbQBOfhg-E-y4iLFicsyi");
+  width: 70px;
+  height: 70px;
+  /* a black shadow from left and white from right */
+  box-shadow: inset 16px 0 40px 3px rgba(0, 0, 0, 0.9),
+    inset -3px 0 5px 2px rgba(255, 255, 255, 0.16);
+  background-size: 190px;
+  margin: 80px auto;
+  border-radius: 50%;
+  position: relative;
+  animation-name: move, scale, rotate;
+  animation-duration: 8s, 8s, 8s;
+  animation-iteration-count: infinite, infinite, infinite;
+  animation-timing-function: ease-in-out, linear, linear;
+  z-index: -1;
+}
+
+@keyframes move {
+  0% {
+    left: 500px;
+  }
+  70% {
+    left: -500px;
+  }
+  100% {
+    left: 500px;
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  32% {
+    transform: scale(0.4);
+    animation-timing-function: ease-in;
+  }
+  70% {
+    transform: scale(1);
+    animation-timing-function: ease-in;
+  }
+  75% {
+    transform: scale(1.2);
+    animation-timing-function: ease-in-out;
+  }
+  86% {
+    transform: scale(2);
+  }
+  98% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    background-position: 0px;
+  }
+  100% {
+    background-position: 190px;
+  }
 }
